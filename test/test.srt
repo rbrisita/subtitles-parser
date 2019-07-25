@@ -7,3 +7,7 @@ Subtitle 1.2
 00:00:28,967 --> 01:30:30,958
 Subtitle 2.1
 Subtitle 2.2
+
+02:10:28,967 --> 02:30:30,958
+Subtitle 3.1
+Subtitle 3.2

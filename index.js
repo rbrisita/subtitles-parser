@@ -18,14 +18,13 @@ var parser = (function() {
         var useMs = ms ? true : false;
 
         data = data.replace(/\r/g, '');
-        var regex = /(\d+)\n(\d{2}:\d{2}:\d{2}[,.]\d{3}) --> (\d{2}:\d{2}:\d{2}[,.]\d{3})/g;
+        var regex = /(\d+)?\n?(\d{2}:\d{2}:\d{2}[,.]\d{3}) --> (\d{2}:\d{2}:\d{2}[,.]\d{3})/g;
         data = data.split(regex);
         data.shift();
-
         var items = [];
         for (var i = 0; i < data.length; i += 4) {
             items.push({
-                id: data[i].trim(),
+                id: data[i] ? data[i].trim() : (items.length+1).toString(),
                 startTime: useMs ? timeMs(data[i + 1].trim()) : data[i + 1].trim(),
                 endTime: useMs ? timeMs(data[i + 2].trim()) : data[i + 2].trim(),
                 text: data[i + 3].trim()
