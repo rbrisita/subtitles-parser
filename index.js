@@ -18,7 +18,7 @@ var parser = (function() {
         var useMs = ms ? true : false;
 
         data = data.replace(/\r/g, '');
-        var regex = /(\d+)?\n?(\d{2}:\d{2}:\d{2}[,.]\d{3}) --> (\d{2}:\d{2}:\d{2}[,.]\d{3})/g;
+        var regex = /(\d+)?\n?(\d{2}:\d{2}:\d{2}[,.]\d{3}) --> (\d{2}:\d{2}:\d{2}[,.]\d{3}).*\n/g;
         data = data.split(regex);
         data.shift();
         var items = [];
