@@ -1,4 +1,4 @@
-subtitles-parser
+subtitles-parser-vtt
 ===============
 Simple module written in javascript, which provides SubRip subtitles parsing methods
 
@@ -9,7 +9,7 @@ NodeJS:
 
     npm install subtitles-parser-vtt
 
-or [download](https://raw.github.com/bazh/subtitles-parser/master/subtitles.parser.min.js) minified version of subtitle-parser to use module in a browser
+or [download](https://raw.github.com/pavladan/subtitles-parser/master/subtitles.parser.min.js) minified version of subtitle-parser to use module in a browser
 
 
 ### Example
