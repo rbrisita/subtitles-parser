@@ -1,7 +1,7 @@
 {
     "name": "subtitles-parser-vtt",
     "description": "NodeJS Parser for SubRip subtitles",
-    "version": "0.0.3",
+    "version": "0.0.5",
     "author": "bazh <interesno@gmail.com>",
     "license": "MIT",
     "keywords": [
