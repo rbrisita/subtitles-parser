@@ -1,4 +1,4 @@
-subtitles-parser
+subtitles-parser-vtt
 ===============
 Simple module written in javascript, which provides SubRip subtitles parsing methods
 
@@ -7,9 +7,9 @@ Simple module written in javascript, which provides SubRip subtitles parsing met
 
 NodeJS:
 
-    npm install subtitles-parser
+    npm install subtitles-parser-vtt
 
-or [download](https://raw.github.com/bazh/subtitles-parser/master/subtitles.parser.min.js) minified version of subtitle-parser to use module in a browser
+or [download](https://raw.github.com/pavladan/subtitles-parser/master/subtitles.parser.min.js) minified version of subtitle-parser to use module in a browser
 
 
 ### Example
@@ -31,7 +31,7 @@ Let's say we have my.srt SubRip subtitles file:
 
 ```js
 var fs = require('fs');
-var parser = require('subtitles-parser');
+var parser = require('subtitles-parser-vtt');
 
 var srt = fs.readFileSync('my.srt','utf8');
 
