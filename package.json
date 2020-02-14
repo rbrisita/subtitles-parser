@@ -20,7 +20,7 @@
     },
     "main": "index.js",
     "devDependencies": {
-        "mocha": "*",
+        "mocha": "^7.0.1",
         "should": "*"
     },
     "engines": {
