@@ -65,12 +65,12 @@ var parser = (function() {
   };
 
   var changeTimeFormat = function(time, format) {
-    if (!format) {
-      return time;
-    } else if (format === "ms") {
+    if (format === "ms") {
       return timeMs(time);
     } else if (format === "s") {
       return timeMs(time) / 1000;
+    } else {
+      return time;
     }
   };
 
