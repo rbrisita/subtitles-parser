@@ -37,8 +37,8 @@ describe('subtitles-parser', function() {
         });
 
         var dataMs;
-        it('parser.fromSrt() should successfully convert time to ms', function() {
-            dataMs = parser.fromSrt(srt, true);
+        it('parser.fromSrt() should successfully convert time to second', function() {
+            dataMs = parser.fromSrt(srt, 's');
             console.log(dataMs)
         });
 
