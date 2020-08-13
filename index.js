@@ -1,4 +1,4 @@
-var parser = (function() {
+var parser = (function () {
   var pItems = {};
 
   /**
@@ -14,7 +14,7 @@ var parser = (function() {
    * @param  {Boolean} ms   Optional: use milliseconds for startTime and endTime
    * @return {Array}
    */
-  pItems.fromSrt = function(data, timeFormat, isYoutubeAutoTranscript) {
+  pItems.fromSrt = function (data, timeFormat, isYoutubeAutoTranscript) {
     var useYoutubeAutoTranscript = isYoutubeAutoTranscript ? true : false;
     data = data.replace(/\r/g, "");
     var regex = /(\d+)?\n?(\d{2}:\d{2}:\d{2}[,.]\d{3}) --> (\d{2}:\d{2}:\d{2}[,.]\d{3}).*\n/g;
@@ -30,10 +30,10 @@ var parser = (function() {
       }
       if (text.trim().length === 0) continue;
       items.push({
-        id: data[i] ? data[i].trim() : (items.length + 1).toString(),
+        id: data[i] ? +data[i].trim() : items.length + 1,
         startTime: changeTimeFormat(data[i + 1].trim(), timeFormat),
         endTime: changeTimeFormat(data[i + 2].trim(), timeFormat),
-        text: text.trim()
+        text: text.trim(),
       });
     }
     return items;
@@ -44,7 +44,7 @@ var parser = (function() {
    * @param  {Array}  data
    * @return {String}      SubRip subtitles string
    */
-  pItems.toSrt = function(data) {
+  pItems.toSrt = function (data) {
     if (!data instanceof Array) return "";
     var res = "";
 
@@ -64,7 +64,7 @@ var parser = (function() {
     return res;
   };
 
-  var changeTimeFormat = function(time, format) {
+  var changeTimeFormat = function (time, format) {
     if (format === "ms") {
       return timeMs(time);
     } else if (format === "s") {
@@ -74,7 +74,7 @@ var parser = (function() {
     }
   };
 
-  var timeMs = function(val) {
+  var timeMs = function (val) {
     var regex = /(\d+):(\d{2}):(\d{2})[,.](\d{3})/;
     var parts = regex.exec(val);
 
@@ -91,7 +91,7 @@ var parser = (function() {
     return parts[1] * 3600000 + parts[2] * 60000 + parts[3] * 1000 + parts[4];
   };
 
-  var msTime = function(val) {
+  var msTime = function (val) {
     var measures = [3600000, 60000, 1000];
     var time = [];
 
