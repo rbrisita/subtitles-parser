@@ -11,7 +11,7 @@ var parser = (function () {
    * }]
    *
    * @param  {String}  data SubRip suntitles string
-   * @param  {Boolean} ms   Optional: use milliseconds for startTime and endTime
+   * @param  {String} timeFormat  Optional: Change startTime and endTime to either: milliseconds ('ms' ) or seconds ('s')
    * @return {Array}
    */
   pItems.fromSrt = function (data, timeFormat, isYoutubeAutoTranscript) {

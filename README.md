@@ -53,13 +53,13 @@ data object will look like:
         text: 'Subtitle 2.1\nSubtitle 2.2'
     }]
 
-if you will pass `true` flag to `fromSrt` function:
+Optionally passing `ms` as the second argument to the `fromSrt` function:
 
 ```js
-var dataMs = parser.fromSrt(srt, true);
+var dataMs = parser.fromSrt(srt, 'ms');
 ```
 
-then it will convert startTime and endTime properties into millisecods:
+will convert startTime and endTime properties into milliseconds:
 
     [{
         id: '1',
@@ -73,6 +73,8 @@ then it will convert startTime and endTime properties into millisecods:
         endTime: 5430958,
         text: 'Subtitle 2.1\nSubtitle 2.2'
     }]
+
+Passing `s` will convert startTime and endTime properties into seconds.
 
 
 `parser.toSrt()` will convert object back to SubRip subtitles format.
