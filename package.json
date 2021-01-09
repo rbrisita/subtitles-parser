@@ -1,36 +1,48 @@
 {
-    "name": "subtitles-parser-vtt",
-    "description": "NodeJS Parser for SubRip subtitles",
-    "version": "0.0.8",
-    "author": "bazh <interesno@gmail.com>",
-    "license": "MIT",
-    "keywords": [
-        "subtitles",
-        "subtitle",
-        "srt",
-        "subrip",
-        "subtitles parser",
-        "subtitle parser"
-    ],
-    "homepage": "https://github.com/pavladan/subtitles-parser",
-    "bugs": "https://github.com/bazh/pavladan/issues",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/pavladan/subtitles-parser"
+  "name": "subtitles-parser-vtt",
+  "description": "NodeJS Parser for SubRip subtitles",
+  "version": "0.0.9",
+  "author": "bazh <interesno@gmail.com>",
+  "contributors": [
+    {
+      "name": "Robert Brisita",
+      "url": "https://github.com/rbrisita"
     },
-    "main": "index.js",
-    "devDependencies": {
-        "mocha": "^7.0.1",
-        "should": "*"
-    },
-    "engines": {
-        "node": "*"
-    },
-    "directories": {
-        "test": "test"
-    },
-    "scripts": {
-        "test": "mocha",
-        "make": "uglifyjs -cmo subtitles.parser.min.js index.js"
+    {
+      "name": "Vladislav",
+      "url": "https://github.com/pavladan"
     }
+  ],
+  "license": "MIT",
+  "keywords": [
+    "subtitles",
+    "subtitle",
+    "srt",
+    "subrip",
+    "subtitles parser",
+    "subtitle parser"
+  ],
+  "homepage": "https://github.com/rbrisita/subtitles-parser",
+  "bugs": "https://github.com/rbrisita/subtitles-parser/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rbrisita/subtitles-parser"
+  },
+  "main": "index.js",
+  "devDependencies": {
+    "mocha": "^7.0.1",
+    "should": "*",
+    "uglify": "^0.1.5"
+  },
+  "engines": {
+    "node": "*"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha",
+    "make": "uglifyjs -cmo subtitles.parser.min.js index.js"
+  },
+  "dependencies": {}
 }
