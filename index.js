@@ -1,8 +1,8 @@
 var parser = (function () {
-  var pItems = {};
+  var o = {};
 
   /**
-   * Converts SubRip subtitles into array of objects
+   * Converts SubRip subtitles (SRT) into and array of objects
    * [{
    *     id:        `Number of subtitle`
    *     startTime: `Start time of subtitle`
@@ -10,11 +10,11 @@ var parser = (function () {
    *     text: `Text of subtitle`
    * }]
    *
-   * @param  {String}  data SubRip suntitles string
-   * @param  {String} timeFormat  Optional: Change startTime and endTime to either: milliseconds ('ms' ) or seconds ('s')
-   * @return {Array}
+   * @param  {String} data SRT subtitles string.
+   * @param  {String} timeFormat Optional: Change startTime and endTime to either: milliseconds ('ms' ) or seconds ('s').
+   * @return {Array} An array of cue objects consisting of: {id, startTime, endTime, text}.
    */
-  pItems.fromSrt = function (data, timeFormat, isYoutubeAutoTranscript) {
+  o.fromSrt = function (data, timeFormat, isYoutubeAutoTranscript) {
     var useYoutubeAutoTranscript = isYoutubeAutoTranscript ? true : false;
     data = data.replace(/\r/g, "");
     var regex = /(\d+)?\n?(\d{2}:\d{2}:\d{2}[,.]\d{3}) --> (\d{2}:\d{2}:\d{2}[,.]\d{3}).*\n/g;
@@ -40,11 +40,11 @@ var parser = (function () {
   };
 
   /**
-   * Converts Array of objects created by this module to SubRip subtitles
-   * @param  {Array}  data
-   * @return {String}      SubRip subtitles string
+   * Converts an array of cue objects into SRT subtitles string.
+   * @param  {Array} data An array of cue objects consisting of: {id, startTime, endTime, text}.
+   * @return {String} SRT subtitles string.
    */
-  pItems.toSrt = function (data) {
+  o.toSrt = function (data) {
     if (!data instanceof Array) return "";
     var res = "";
 
@@ -52,8 +52,8 @@ var parser = (function () {
       var s = data[i];
 
       if (!isNaN(s.startTime) && !isNaN(s.endTime)) {
-        s.startTime = msTime(parseInt(s.startTime, 10));
-        s.endTime = msTime(parseInt(s.endTime, 10));
+        s.startTime = o.msToSrt(parseInt(s.startTime, 10));
+        s.endTime = o.msToSrt(parseInt(s.endTime, 10));
       }
 
       res += s.id + "\r\n";
@@ -66,15 +66,20 @@ var parser = (function () {
 
   var changeTimeFormat = function (time, format) {
     if (format === "ms") {
-      return timeMs(time);
+      return o.srtToMs(time);
     } else if (format === "s") {
-      return timeMs(time) / 1000;
+      return o.srtToMs(time) / 1000;
     } else {
       return time;
     }
   };
 
-  var timeMs = function (val) {
+  /**
+   * Convert given SRT time string to milliseconds.
+   * @param {String} val SRT time string.
+   * @retrun {Number} A millisecond value representing given SRT string.
+   */
+  o.srtToMs = function (val) {
     var regex = /(\d+):(\d{2}):(\d{2})[,.](\d{3})/;
     var parts = regex.exec(val);
 
@@ -91,19 +96,24 @@ var parser = (function () {
     return parts[1] * 3600000 + parts[2] * 60000 + parts[3] * 1000 + parts[4];
   };
 
-  var msTime = function (val) {
+  /**
+   * Convert given ms to SRT time string.
+   * @param {Number} val Time in milliseconds.
+   * @return {String} SRT time string.
+   */
+  o.msToSrt = function (ms) {
     var measures = [3600000, 60000, 1000];
     var time = [];
 
     for (var i in measures) {
-      var res = ((val / measures[i]) >> 0).toString();
+      var res = ((ms / measures[i]) >> 0).toString();
 
       if (res.length < 2) res = "0" + res;
-      val %= measures[i];
+      ms %= measures[i];
       time.push(res);
     }
 
-    var ms = val.toString();
+    var ms = ms.toString();
     if (ms.length < 3) {
       for (i = 0; i <= 3 - ms.length; i++) ms = "0" + ms;
     }
@@ -111,7 +121,7 @@ var parser = (function () {
     return time.join(":") + "," + ms;
   };
 
-  return pItems;
+  return o;
 })();
 
 // ignore exports for browser
